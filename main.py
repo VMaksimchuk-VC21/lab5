@@ -2,6 +2,24 @@ import random
 import os
 
 
+def input_matrix():
+    return
+
+
+def dot(matrix):
+    answer = []
+    for i, row in enumerate(matrix):
+        min_dot = min(row)
+        for j, element in enumerate(row):
+            if element == min_dot:
+                dot = [matrix[k][j] for k in range(len(matrix))]
+                max_dot = max(dot)
+                if element == max_dot:
+                    answer.append(element)
+
+    return answer
+
+
 def main():
     while True:
         os.system("cls")
@@ -17,12 +35,20 @@ def main():
             pass
         elif point == "2":
             pass
+
         elif point == "3":
-            pass
+            if 'result' in locals():
+                answer = []
+                print("Результат:")
+                print("Массив седловых точек:", answer)
+            else:
+                print("Входные данные не сгенерированы")
         elif point == "4":
-            pass
+            print("Программа завершена")
+            break
         else:
-            pass
+            os.system("cls")
+            print("Выберите верный пункт меню")
 
 
 if __name__ == '__main__':
