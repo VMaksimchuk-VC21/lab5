@@ -3,7 +3,61 @@ import os
 
 
 def input_matrix():
-    return
+    input_matrix = input("Выберите тип ввода данных:\n"
+                         "1. вручную\n"
+                         "2. сгенерировать случайным образом\nВведите тип ввода данных: ")
+    if input_matrix == '1':
+        n = input("Введите количество строк: ")
+        while not n.isdigit():
+            os.system("cls")
+            print("Введите целочисленное значение для количества строк")
+            n = input("Введите количество строк: ")
+
+        m = input("Введите количество столбцов: ")
+        while not m.isdigit():
+            os.system("cls")
+            print("Введите целочисленное значение для количества столбцов")
+            m = input("Введите количество столбцов: ")
+
+        matrix = []
+        print("Введите элементы матрицы:")
+        for i in range(int(n)):
+            row = []
+            for j in range(int(m)):
+                element = input(f"Введите элемент [{i}, {j}]: ")
+                while not element.isdigit():
+                    os.system("cls")
+                    print("Введите целочисленное значение")
+                    element = input(f"Введите элемент [{i}, {j}]: ")
+                row.append(int(element))
+            matrix.append(row)
+
+    elif input_matrix == '2':
+        n = input("Введите количество строк: ")
+        while not n.isdigit():
+            os.system("cls")
+            print("Введите целочисленное значение для количества строк")
+            n = input("Введите количество строк: ")
+
+        m = input("Введите количество столбцов: ")
+        while not m.isdigit():
+            os.system("cls")
+            print("Введите целочисленное значение для количества столбцов")
+            m = input("Введите количество столбцов: ")
+
+        matrix = []
+        for i in range(int(n)):
+            row = []
+            for j in range(int(m)):
+                element = random.randint(0, 100)
+                row.append(element)
+            matrix.append(row)
+    else:
+        os.system("cls")
+        print("Неверный тип ввода данных")
+        matrix = None
+
+    return matrix
 
 
 def dot(matrix):
@@ -32,13 +86,17 @@ def main():
         point = input("Введите пункт меню: ")
 
         if point == "1":
-            pass
+            matrix = input_matrix()
         elif point == "2":
-            pass
-
+            if 'matrix' in locals():
+                result = dot(matrix)
+                print("Исходная матрица:", matrix)
+                print("Задание решено")
+            else:
+                print("Массив не введен")
         elif point == "3":
             if 'result' in locals():
-                answer = []
+                answer = result
                 print("Результат:")
                 print("Массив седловых точек:", answer)
             else:
